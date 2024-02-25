@@ -1,0 +1,202 @@
+:root {
+  --dark-lv-1: #4c566a;
+  --dark-lv-2: #434c5e;
+  --dark-lv-3: #3b4252;
+  --dark-lv-4: #2e3440;
+}
+
+/* * {
+  outline: 1px solid red;
+} */
+
+@font-face {
+  font-family: Poppins;
+  src: url(fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: Indo Pak;
+  src: url(fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff);
+}
+
+body {
+  margin: 0;
+  font-family: Poppins;
+  background-color: var(--dark-lv-4);
+  color: white;
+  user-select: none;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin: 5rem auto;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  justify-content: center;
+  width: 1392px;
+}
+
+.left,
+.right {
+  width: 640px;
+  height: 640px;
+  padding: 2rem;
+}
+
+.left {
+  background-color: var(--dark-lv-3);
+  overflow-y: scroll;
+}
+
+.ayat-wrapper {
+  border-bottom: .025rem solid white;
+  padding-block: 1rem;
+  padding-right: .125rem;
+  direction: rtl;
+  transition: .125s ease;
+  cursor: pointer;
+}
+
+.ayat-wrapper:hover,
+.selected {
+  background-color: var(--dark-lv-1);
+}
+
+.ayat {
+  font-size: 1.5rem;
+  font-family: 'Indo Pak';
+  text-align: right;
+}
+
+.nomor {
+  display: inline-block;
+  height: 1rem;
+  line-height: 1rem;
+  font-family: Poppins;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 50%;
+  border-inline: 0.25rem solid white;
+  margin: 1rem;
+  padding: .5rem;
+  padding-inline: .75rem;
+}
+
+.right {
+  background-color: var(--dark-lv-1);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.wallpaper {
+  background-image: url(img/wallpapers/1.jpg);
+  width: 360px;
+  height: 640px;
+  background-size: cover;
+  background-position: center;
+}
+
+.ayat-wrapper-wallpaper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  direction: rtl;
+}
+
+.ayat-wrapper-wallpaper.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wallpaper-content {
+  text-align: center;
+  padding: 1rem;
+  padding-block-start: 4rem;
+  overflow: hidden;
+  height: 100%;
+  text-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+}
+
+.wallpaper-content span {
+  display: inline-block;
+  margin-bottom: .5rem;
+  padding-block: .5rem;
+  font-size: 1.5rem;
+  width: 100%;
+  border-block: .025rem solid white;
+
+}
+
+.ayat-wallpaper {
+  font-size: 1.5rem;
+  font-family: 'Indo Pak';
+}
+
+
+.nomor-wallpaper {
+  display: inline-block;
+  height: 1rem;
+  line-height: 1rem;
+  font-family: Poppins;
+  font-size: .75rem;
+  text-align: center;
+  border-radius: 50%;
+  border-inline: 0.25rem solid white;
+  padding: .35rem;
+  padding-inline: .5rem;
+  margin-inline: .75rem;
+}
+
+/* Menggunakan selector kelas */
+.pilihan {
+  appearance: none;
+  background-color: var(--dark-lv-1);
+  color: white;
+  border: 1px solid var(--dark-lv-2);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+  font-family: Poppins;
+}
+
+.pilihan:hover {
+  border-color: var(--dark-lv-3);
+}
+
+.pilihan:focus {
+  border-color: var(--dark-lv-3);
+  box-shadow: 0 0 5px rgba(59, 66, 82, 0.5);
+}
+
+/* Gaya saat opsi dropdown ditekan */
+.pilihan option:checked {
+  background-color: var(--dark-lv-4);
+}
+
+/* Menggunakan selector ID */
+#download {
+  background-color: var(--dark-lv-2);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: Poppins;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#download:hover {
+  background-color: var(--dark-lv-3);
+}
+
+#download:focus {
+  box-shadow: 0 0 5px rgba(59, 66, 82, 0.5);
+}

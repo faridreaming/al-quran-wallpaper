@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al-Qur'an Wallpaper</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script src="html2canvas.min.js"></script> -->
+    <script src="html2canvas.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="left">
+        <div class="selection">
+          <select name="surah" id="surah" class="pilihan">
+            <option value="-">Pilih surah</option>
+          </select>
+        </div>
+        <div class="interface" id="interface">
+          Silahkan pilih surah
+          <!-- <div class="ayat-wrapper">
+            <div class="ayat"><div class="nomor">
+            </div>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>  
+          </div> -->
+        </div>
+      </section>
+      <section class="right">
+        <h1>Preview</h1>
+        <button id="download">Download</button>
+        <div id="download-container">
+          <div class="wallpaper">
+            <div class="wallpaper-content">
+              <!-- <h4>Hello World</h4> -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      const generateImage = () => {
+        const elementToCapture = document.querySelector(".wallpaper");
+        const scale = 3; // Atur skala sesuai kebutuhan, misalnya 2 untuk dua kali lipat resolusi
+
+        // Atur opsi saat memanggil html2canvas
+        html2canvas(elementToCapture, {
+          scale: scale, // Atur faktor skala
+        }).then((canvas) => {
+          const imgData = canvas.toDataURL("image/png");
+
+          // Membuat elemen tautan (anchor) untuk mengunduh gambar
+          const downloadLink = document.createElement("a");
+          downloadLink.href = imgData;
+          downloadLink.download = "captured_image.png";
+          downloadLink.textContent = "Download Image";
+
+          // Menambahkan atribut download untuk langsung mengunduh
+          downloadLink.setAttribute("download", "captured_image.png");
+
+          // Klik pada tautan untuk memulai unduhan
+          downloadLink.click();
+        });
+      };
+
+      const downloadButton = document.getElementById("download");
+      downloadButton.addEventListener("click", generateImage);
+    </script>
+  </body>
+</html>
