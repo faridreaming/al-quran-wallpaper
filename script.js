@@ -2,17 +2,14 @@ const surah = document.getElementById("surah");
 const jumlahSurah = 114;
 
 for (let i = 1; i <= jumlahSurah; i++) {
-  fetch(`quran-json/surah/${i}.json`)
+  fetch(`https://unpkg.com/quran-json@1.0.1/json/surahs/${i}.json`)
     .then((response) => response.json())
     .then((data) => {
-      for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-          const namaSurah = document.createElement("option");
-          namaSurah.value = data[key].number;
-          namaSurah.textContent = data[key].name_latin;
-          surah.appendChild(namaSurah);
-        }
-      }
+      // console.log(data);
+      const namaSurah = document.createElement("option");
+      namaSurah.value = data.number;
+      namaSurah.textContent = data.transliteration_en;
+      surah.appendChild(namaSurah);
     })
     .catch((error) => console.log("Terjadi kesalahan", error));
 }
@@ -23,65 +20,60 @@ surah.addEventListener("change", () => {
   interface.innerHTML = "";
 
   if (nomorSurah != "-") {
-    fetch(`quran-json/surah/${nomorSurah}.json`)
+    fetch(`https://unpkg.com/quran-json@1.0.1/json/surahs/${nomorSurah}.json`)
       .then((response) => response.json())
       .then((data) => {
-        for (let key in data) {
-          const jumlahAyat = data[key].number_of_ayah;
-          if (data.hasOwnProperty(key)) {
-            if (nomorSurah == 1) {
-              //AL-FATIHAH
-              for (let i = 1; i <= jumlahAyat; i++) {
-                const ayatWrapper = document.createElement("div");
-                const nomor = document.createElement("div");
-                const ayat = document.createElement("div");
+        if (nomorSurah == 1) {
+          //AL-FATIHAH
+          data.verses.forEach((verse) => {
+            const ayatWrapper = document.createElement("div");
+            const nomor = document.createElement("div");
+            const ayat = document.createElement("div");
 
-                ayatWrapper.classList.add("ayat-wrapper");
-                nomor.classList.add("nomor");
-                ayat.classList.add("ayat");
+            ayatWrapper.classList.add("ayat-wrapper");
+            nomor.classList.add("nomor");
+            ayat.classList.add("ayat");
 
-                nomor.innerHTML = i;
-                ayat.innerHTML = data[key].text[i];
-                ayatWrapper.appendChild(ayat);
-                ayat.appendChild(nomor);
-                interface.appendChild(ayatWrapper);
-                if (i == jumlahAyat) {
-                  ayatWrapper.style.border = "none";
-                }
-              }
-            } else {
-              const ayatWrapper = document.createElement("div");
-              const nomor = document.createElement("div");
-              const ayat = document.createElement("div");
-
-              ayatWrapper.classList.add("ayat-wrapper");
-              nomor.classList.add("nomor");
-              ayat.classList.add("ayat");
-
-              ayat.innerHTML = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ";
-              ayatWrapper.appendChild(ayat);
-              interface.appendChild(ayatWrapper);
-
-              for (let i = 1; i <= jumlahAyat; i++) {
-                const ayatWrapper = document.createElement("div");
-                const nomor = document.createElement("div");
-                const ayat = document.createElement("div");
-
-                ayatWrapper.classList.add("ayat-wrapper");
-                nomor.classList.add("nomor");
-                ayat.classList.add("ayat");
-
-                nomor.innerHTML = i;
-                ayat.innerHTML = data[key].text[i];
-                ayatWrapper.appendChild(ayat);
-                ayat.appendChild(nomor);
-                interface.appendChild(ayatWrapper);
-                if (i == jumlahAyat) {
-                  ayatWrapper.style.border = "none";
-                }
-              }
+            nomor.innerHTML = verse.number;
+            ayat.innerHTML = verse.text;
+            ayatWrapper.appendChild(ayat);
+            ayat.appendChild(nomor);
+            interface.appendChild(ayatWrapper);
+            if (verse.number == data.verses.length) {
+              ayatWrapper.style.border = "none";
             }
-          }
+          });
+        } else {
+          const ayatWrapper = document.createElement("div");
+          const nomor = document.createElement("div");
+          const ayat = document.createElement("div");
+
+          ayatWrapper.classList.add("ayat-wrapper");
+          nomor.classList.add("nomor");
+          ayat.classList.add("ayat");
+
+          ayat.innerHTML = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ";
+          ayatWrapper.appendChild(ayat);
+          interface.appendChild(ayatWrapper);
+
+          data.verses.forEach((verse) => {
+            const ayatWrapper = document.createElement("div");
+            const nomor = document.createElement("div");
+            const ayat = document.createElement("div");
+
+            ayatWrapper.classList.add("ayat-wrapper");
+            nomor.classList.add("nomor");
+            ayat.classList.add("ayat");
+
+            nomor.innerHTML = verse.number;
+            ayat.innerHTML = verse.text;
+            ayatWrapper.appendChild(ayat);
+            ayat.appendChild(nomor);
+            interface.appendChild(ayatWrapper);
+            if (verse.number == data.verses.length) {
+              ayatWrapper.style.border = "none";
+            }
+          });
         }
 
         const ayatWrapper = document.querySelectorAll(".ayat-wrapper");
@@ -109,29 +101,29 @@ surah.addEventListener("change", () => {
               wallpaperContent.appendChild(bismillah);
             }
 
+            // console.log(ayats);
+
             // Tambahkan elemen-elemen yang dipilih ke wallpaper-content
             // Tambahkan elemen-elemen yang dipilih ke wallpaper-content
             ayats.forEach((ayatNumber) => {
-              for (let key in data) {
-                const ayatWrapperWallpaper = document.createElement("div");
-                const nomorWallpaper = document.createElement("div");
-                const ayatWallpaper = document.createElement("div");
+              const ayatWrapperWallpaper = document.createElement("div");
+              const nomorWallpaper = document.createElement("div");
+              const ayatWallpaper = document.createElement("div");
 
-                ayatWrapperWallpaper.classList.add("ayat-wrapper-wallpaper");
-                nomorWallpaper.classList.add("nomor-wallpaper");
-                ayatWallpaper.classList.add("ayat-wallpaper");
+              ayatWrapperWallpaper.classList.add("ayat-wrapper-wallpaper");
+              nomorWallpaper.classList.add("nomor-wallpaper");
+              ayatWallpaper.classList.add("ayat-wallpaper");
 
-                nomorWallpaper.innerHTML = ayatNumber;
-                ayatWallpaper.innerHTML = data[key].text[ayatNumber];
-                ayatWrapperWallpaper.appendChild(ayatWallpaper);
-                ayatWallpaper.appendChild(nomorWallpaper);
+              nomorWallpaper.innerHTML = ayatNumber;
+              ayatWallpaper.innerHTML = data.verses[ayatNumber - 1].text;
+              ayatWrapperWallpaper.appendChild(ayatWallpaper);
+              ayatWallpaper.appendChild(nomorWallpaper);
 
-                // Tambahkan kelas show untuk menerapkan transisi
-                setTimeout(() => {
-                  ayatWrapperWallpaper.classList.add("show");
-                }, 100); // Delay setiap ayat sebentar untuk efek cascading
-                wallpaperContent.appendChild(ayatWrapperWallpaper);
-              }
+              // Tambahkan kelas show untuk menerapkan transisi
+              setTimeout(() => {
+                ayatWrapperWallpaper.classList.add("show");
+              }, 100); // Delay setiap ayat sebentar untuk efek cascading
+              wallpaperContent.appendChild(ayatWrapperWallpaper);
             });
           });
         });

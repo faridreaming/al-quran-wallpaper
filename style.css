@@ -51,11 +51,11 @@ body {
 }
 
 .ayat-wrapper {
-  border-bottom: .025rem solid white;
+  border-bottom: 0.025rem solid white;
   padding-block: 1rem;
-  padding-right: .125rem;
+  padding-right: 0.125rem;
   direction: rtl;
-  transition: .125s ease;
+  transition: 0.125s ease;
   cursor: pointer;
 }
 
@@ -66,7 +66,7 @@ body {
 
 .ayat {
   font-size: 1.5rem;
-  font-family: 'Indo Pak';
+  font-family: "Indo Pak";
   text-align: right;
 }
 
@@ -80,8 +80,8 @@ body {
   border-radius: 50%;
   border-inline: 0.25rem solid white;
   margin: 1rem;
-  padding: .5rem;
-  padding-inline: .75rem;
+  padding: 0.5rem;
+  padding-inline: 0.75rem;
 }
 
 .right {
@@ -117,37 +117,35 @@ body {
   padding-block-start: 4rem;
   overflow: hidden;
   height: 100%;
-  text-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
 .wallpaper-content span {
   display: inline-block;
-  margin-bottom: .5rem;
-  padding-block: .5rem;
+  margin-bottom: 0.5rem;
+  padding-block: 0.5rem;
   font-size: 1.5rem;
   width: 100%;
-  border-block: .025rem solid white;
-
+  border-block: 0.025rem solid white;
 }
 
 .ayat-wallpaper {
   font-size: 1.5rem;
-  font-family: 'Indo Pak';
+  font-family: "Indo Pak";
 }
-
 
 .nomor-wallpaper {
   display: inline-block;
   height: 1rem;
   line-height: 1rem;
   font-family: Poppins;
-  font-size: .75rem;
+  font-size: 0.75rem;
   text-align: center;
   border-radius: 50%;
   border-inline: 0.25rem solid white;
-  padding: .35rem;
-  padding-inline: .5rem;
-  margin-inline: .75rem;
+  padding: 0.35rem;
+  padding-inline: 0.5rem;
+  margin-inline: 0.75rem;
 }
 
 /* Menggunakan selector kelas */
